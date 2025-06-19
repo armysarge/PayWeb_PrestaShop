@@ -11,7 +11,7 @@ support@payfast.help should you require any assistance.
     - Visit the [releases page](https://github.com/Paygate/PayWeb_PrestaShop/releases) and
       download [paygate.zip](https://github.com/Paygate/PayWeb_PrestaShop/releases/download/v1.9.0/paygate.zip).
 
-2. **Install the Plugina**
+2. **Install the Plugin**
     - Access your PrestaShop admin panel.
     - Under the **Improve** menu, click on **Modules** > **Module Manager**.
     - Click the **Upload a Module** button.

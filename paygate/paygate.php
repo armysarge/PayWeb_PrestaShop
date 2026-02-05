@@ -1129,14 +1129,18 @@ HTML;
      */
     public function hookDisplayCustomerAccount(): false|string
     {
-        $this->context->smarty->assign(
-            'card',
-            $this->context->link->getModuleLink('paygate', 'payvault'),
-        );
-        $this->context->smarty->assign(
-            'tokenization',
-            Configuration::get('PAYGATE_PAY_VAULT'),
-        );
+        // Only show if PayVault is enabled
+        if ((int)Configuration::get('PAYGATE_PAY_VAULT') !== 1) {
+            return '';
+        }
+
+        $this->context->smarty->assign([
+            'card' => [
+                'value' => $this->context->link->getModuleLink('paygate', 'payvault'),
+            ],
+            'tokenization' => (int)Configuration::get('PAYGATE_PAY_VAULT'),
+            'base_dir' => _PS_BASE_URL_.__PS_BASE_URI__,
+        ]);
 
         return $this->context->smarty
             ->fetch('module:paygate/views/templates/front/payvault.tpl');

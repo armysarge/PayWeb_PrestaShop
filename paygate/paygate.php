@@ -30,7 +30,7 @@ class Paygate extends PaymentModule
         require_once _PS_MODULE_DIR_ . 'paygate/classes/methods.php';
         $this->name        = 'paygate';
         $this->tab         = 'payments_gateways';
-        $this->version     = '1.9.0';
+        $this->version     = '1.9.1';
         $this->author      = 'Paygate';
         $this->controllers = array('payment', 'validation');
 
@@ -430,6 +430,8 @@ HTML;
 
     public function renderForm(): string
     {
+        $moduleUrl = $this->context->link->getBaseLink() . 'modules/' . $this->name . '/';
+
         $fields_form = array(
             'form' => array(
                 'legend' => array(
@@ -508,57 +510,57 @@ HTML;
                             'query' => array(
                                 array(
                                     'id'   => 'creditcard',
-                                    'name' => 'Credit Cards<img src="../modules/paygate/assets/images/mastercard-visa.svg" alt="Credit Cards" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'Credit Cards<img src="' . $moduleUrl . 'assets/images/mastercard-visa.svg" alt="Credit Cards" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'creditcard',
                                 ),
                                 array(
                                     'id'   => 'banktransfer',
-                                    'name' => 'Bank Transfer<img src="../modules/paygate/assets/images/sid.svg" alt="Bank Transfer" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'Bank Transfer<img src="' . $moduleUrl . 'assets/images/sid.svg" alt="Bank Transfer" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'banktransfer',
                                 ),
                                 array(
                                     'id'   => 'zapper',
-                                    'name' => 'Zapper<img src="../modules/paygate/assets/images/zapper.svg" alt="Zapper" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'Zapper<img src="' . $moduleUrl . 'assets/images/zapper.svg" alt="Zapper" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'zapper',
                                 ),
                                 array(
                                     'id'   => 'snapscan',
-                                    'name' => 'SnapScan<img src="../modules/paygate/assets/images/snapscan.svg" alt="SnapScan" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'SnapScan<img src="' . $moduleUrl . 'assets/images/snapscan.svg" alt="SnapScan" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'snapscan',
                                 ),
                                 array(
                                     'id'   => 'paypal',
-                                    'name' => 'PayPal<img src="../modules/paygate/assets/images/paypal.svg" alt="PayPal" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'PayPal<img src="' . $moduleUrl . 'assets/images/paypal.svg" alt="PayPal" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'paypal',
                                 ),
                                 array(
                                     'id'   => 'mobicred',
-                                    'name' => 'MobiCred<img src="../modules/paygate/assets/images/mobicred.svg" alt="MobiCred" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'MobiCred<img src="' . $moduleUrl . 'assets/images/mobicred.svg" alt="MobiCred" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'mobicred',
                                 ),
                                 array(
                                     'id'   => 'momopay',
-                                    'name' => 'MomoPay<img src="../modules/paygate/assets/images/momopay.svg" alt="MomoPay" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'MomoPay<img src="' . $moduleUrl . 'assets/images/momopay.svg" alt="MomoPay" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'momopay',
                                 ),
                                 array(
                                     'id'   => 'scantopay',
-                                    'name' => 'ScanToPay<img src="../modules/paygate/assets/images/scan-to-pay.svg" alt="ScanToPay" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'ScanToPay<img src="' . $moduleUrl . 'assets/images/scan-to-pay.svg" alt="ScanToPay" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'scantopay',
                                 ),
                                 array(
                                     'id'   => 'applepay',
-                                    'name' => 'ApplePay<img src="../modules/paygate/assets/images/apple-pay.svg" alt="ApplePay" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'ApplePay<img src="' . $moduleUrl . 'assets/images/apple-pay.svg" alt="ApplePay" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'applepay',
                                 ),
                                 array(
                                     'id'   => 'rcs',
-                                    'name' => 'RCS<img src="../modules/paygate/assets/images/rcs.svg" alt="RCS" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'RCS<img src="' . $moduleUrl . 'assets/images/rcs.svg" alt="RCS" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'rcs',
                                 ),
                                 array(
                                     'id'   => 'samsungpay',
-                                    'name' => 'SamsungPay<img src="../modules/paygate/assets/images/samsung-pay.svg" alt="SamsungPay" style="height: 15px; margin-left: 10px;">',
+                                    'name' => 'SamsungPay<img src="' . $moduleUrl . 'assets/images/samsung-pay.svg" alt="SamsungPay" style="height: 15px; margin-left: 10px;">',
                                     'val'  => 'samsungpay',
                                 ),
                             ),

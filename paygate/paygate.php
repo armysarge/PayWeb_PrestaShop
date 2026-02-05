@@ -70,10 +70,10 @@ class Paygate extends PaymentModule
                 `id_vault` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 `id_customer` INT UNSIGNED NOT NULL,
                 `vault_id` VARCHAR(40) NOT NULL,
-                `first_six` VARCHAR(10) NOT NULL,        
+                `first_six` VARCHAR(10) NOT NULL,
                 `last_four` VARCHAR(10) NOT NULL,
                 `expiry` VARCHAR(10) NOT NULL
-                ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;   
+                ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8;
             '
         );
 
@@ -184,7 +184,7 @@ VAULTS;
   if (!window.ApplePaySession) {
     // Apple Pay is not available, so let's hide the specific input element
     const applePayElement = document.querySelector('input[value="applepay"]');
-    
+
     if (applePayElement) {
     const parentP = applePayElement.closest('tr');
     if (parentP) {
@@ -200,7 +200,7 @@ VAULTS;
 
 });
 
-</script
+</script>
 HTML;
 
         $paymentOption = new PaymentOption();
@@ -211,6 +211,34 @@ HTML;
 
 
         return [$paymentOption];
+    }
+
+    /**
+     * Hook for payment return page
+     *
+     * @param array $params
+     * @return string
+     */
+    public function hookPaymentReturn($params): string
+    {
+        if (!$this->active) {
+            return '';
+        }
+
+        $order = $params['order'];
+
+        if (!Validate::isLoadedObject($order)) {
+            return '';
+        }
+
+        $this->smarty->assign([
+            'shop_name' => $this->context->shop->name,
+            'reference' => $order->reference,
+            'contact_url' => $this->context->link->getPageLink('contact', true),
+            'status' => 'ok',
+        ]);
+
+        return $this->fetch('module:paygate/views/templates/hook/payment_return.tpl');
     }
 
     /**
